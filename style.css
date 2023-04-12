@@ -1,0 +1,18 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+#playoff-picture {
+  display: flex;
+  justify-content: center;
+}
+
+#leaderboard {
+  text-align: center;
+}
