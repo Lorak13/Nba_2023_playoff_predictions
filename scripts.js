@@ -57,3 +57,38 @@ const leaderboard = calculateUserPoints(users, results);
 
 // Display leaderboard
 console.log(leaderboard);
+
+// Function to create a playoff matchup element
+function createMatchupElement(matchupId, users, result) {
+  const matchup = document.createElement('div');
+  matchup.classList.add('matchup');
+  matchup.innerHTML = `
+    <div class="matchup-title">Matchup ${matchupId + 1}</div>
+    <div class="predictions">
+      ${users.map(user => `<div class="user-prediction"><span>${user.name}</span><span>${user.guesses[matchupId]}</span></div>`).join('')}
+    </div>
+    <div class="actual-result">Result: ${result}</div>
+  `;
+  return matchup;
+}
+
+// Function to display playoff matchups
+function displayPlayoffMatchups(users, results) {
+  const playoffPicture = document.getElementById('playoff-picture');
+  for (let i = 0; i < results.length; i++) {
+    playoffPicture.appendChild(createMatchupElement(i, users, results[i]));
+  }
+}
+
+// Function to display leaderboard
+function displayLeaderboard(leaderboard) {
+  const leaderboardTableBody = document.getElementById('leaderboard-table').querySelector('tbody');
+  for (const user of leaderboard) {
+    const row = document.createElement('tr');
+    row.innerHTML = `<td>${user.name}</td><td>${user.points}</td>`;
+    leaderboardTableBody.appendChild(row);
+  }
+}
+
+displayPlayoffMatchups(users, results);
+displayLeaderboard(leaderboard);
